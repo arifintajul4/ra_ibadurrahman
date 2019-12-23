@@ -38,7 +38,7 @@ class Tagihan extends CI_Controller
 						'nis' => $s['nis'],
 						'id_tagihan' => $id_tagihan,
 						'status' => 'Belum Lunas',
-						'nominal' => $this->input->post('nominal'),
+						'sisa' => $this->input->post('nominal'),
 					];
 					$this->db->insert('tagihan_siswa', $data);
 				}

@@ -70,6 +70,7 @@ class Siswa extends CI_Controller
         $data['title'] = "Detail Siswa";
         $data['siswa'] = $this->db->get_where('siswa', ['nis' => $nis])->row();
         $data['ortu'] = $this->db->get_where('orang_tua', ['id' => $data['siswa']->id_orang_tua])->row();
+        $data['tagihan'] = $this->Model_app->view_join_where('tagihan_siswa', 'tagihan', 'id_tagihan', ['nis' => $nis], 'id', 'DESC');
         //var_dump($data['ortu']); die;
         $this->template->load('admin/template', 'siswa/detail', $data);
     }

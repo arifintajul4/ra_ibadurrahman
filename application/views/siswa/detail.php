@@ -131,12 +131,27 @@
                                     <th>No</th>
                                     <th>Jenis Tagihan</th>
                                     <th>Nominal</th>
+                                    <th>Sisa Tagihan</th>
                                     <th>Status</th>
                                     <th class="text-center">Action</th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  
+                                  <?php $i=1; foreach ($tagihan as $t): ?>
+                                    <tr>
+                                      <td><?= $i++; ?></td>
+                                      <td><?= $t['jenis']; ?></td>
+                                      <td>Rp.<?= number_format($t['nominal']); ?></td>
+                                      <td>Rp.<?= number_format($t['sisa']); ?></td>
+                                      <td><?= $t['status']; ?></td>
+                                      <td>
+                                        <center>
+                                          <a class='btn btn-warning btn-sm' data-toggle="tooltip" data-placement="top" title='Bayar' href="<?= base_url('pembayaran/tambah/'.$t['id']) ?>"><i class="fas fa-search-plus"></i></a>
+                                          <a class='btn btn-danger btn-sm hapus' data-toggle="tooltip" data-placement="top" title='Hapus Data' href="<?= base_url('tagihan/hapus/'.$t['id']) ?>" ><i class="fas fa-trash"></i></a>
+                                        </center>
+                                      </td>
+                                    </tr>
+                                  <?php endforeach; ?>
                                 </tbody>
                               </table>
                             </div>

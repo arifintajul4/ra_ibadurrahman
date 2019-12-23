@@ -73,7 +73,7 @@
             <label for="jenis">Jenis</label>
             <select class="form-control" id="jenis" name="jenis">
               <option></option>
-              <option value="spp">SPP</option>
+              <option value="SPP">SPP</option>
               <option value="Kegitan Tahunan">Kegiatan Tahunan</option>
             </select>
           </div>
