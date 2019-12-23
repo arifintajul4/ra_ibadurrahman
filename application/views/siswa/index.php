@@ -40,6 +40,7 @@
                                       <th>Jk</th>
                                       <th>No Telepon</th>
                                       <th>Alamat</th>
+                                      <th>Kelas</th>
                                       <th><center>Action</center></th>
                                   </tr>
                               </thead>
@@ -52,6 +53,7 @@
                                       <td><?= $row['jk'] ?></td>
                                       <td><?= $row['no_tlp'] ?></td>
                                       <td><?= $row['alamat'] ?></td>
+                                      <td class="text-center"><?= $row['kelas'] ?></td>
                                       <td>
                                         <center>
                                           <a class='btn btn-warning btn-sm' data-toggle="tooltip" data-placement="top" title='Lihat Detail' href=""><i class="fas fa-search-plus"></i></a>
@@ -73,31 +75,3 @@
     </div>
 </section>
 <!-- [ Main Content ] end -->
-
-
-<!-- Modal -->
-<div class="modal fade" id="import" tabindex="-1" role="dialog" aria-labelledby="importLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="importLabel">Import Data</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="<?= base_url('home/import') ?>" method="post" enctype="multipart/form-data">
-          <div class="form-group">
-            <input type="file" class="form-control-file" id="file" name="file">
-            <small>allowed format: xlsx, max size: 2MB</small>
-          </div>
-      <p class="">Download Format File <a href="<?= base_url('excel/format.xlsx') ?>">disini</a></p>
-      </div>
-      <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button class="btn btn-primary btnSubmit" type="submit" name="submit">Submit</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
