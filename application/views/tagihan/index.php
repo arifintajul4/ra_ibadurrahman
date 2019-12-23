@@ -12,7 +12,7 @@
                         <hr>
                     </div>
                     <div class="card-body">
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#tagihanModal">Tambah Data Tagihan</button>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#tagihanModal"><i class="fa fa-plus-square"></i> Tambah Data Tagihan</button>
                         <div class="mt-2">
                             <table id="dataTable" class="table table-bordered table-stripped"> 
                                 <thead> 
@@ -21,10 +21,24 @@
                                        <th>Tahun Ajaran</th>
                                        <th>Jenis Tagihan</th>
                                        <th>Nominal</th>
-                                       <th>Action</th>
+                                       <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody> 
+                                  <?php $i=1; foreach ($tagihan as $t): ?>
+                                    <tr>
+                                      <td><?= $i++ ?></td>
+                                      <td><?= $t['tahun_ajar'] ?></td>
+                                      <td><?= $t['jenis'] ?></td>
+                                      <td>Rp.<?= number_format($t['nominal']) ?></td>
+                                      <td>
+                                        <center>
+                                          <a class='btn btn-warning btn-sm' data-toggle="tooltip" data-placement="top" title='Edit Data' href="#"><i class="fas fa-pen"></i></a>
+                                          <a class='btn btn-danger btn-sm hapus' data-toggle="tooltip" data-placement="top" title='Hapus Data' href="<?= base_url('tagihan/hapus/'.$t['id']) ?>" ><i class="fas fa-trash"></i></a>
+                                        </center>                                      
+                                      </td>
+                                    </tr>
+                                  <?php endforeach; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -50,7 +64,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="" method="post">
+        <form action="<?= base_url('tagihan/tambah') ?>" method="post">
           <div class="form-group">
             <label for="tahun">Tahun Ajaran</label>
             <input type="text" class="form-control" id="tahun" name="tahun" placeholder="2017/1">
@@ -70,7 +84,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" name="submit" class="btn btn-primary">Submit</button>
         </form>
 
       </div>
