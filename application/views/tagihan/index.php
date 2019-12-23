@@ -34,7 +34,7 @@
                                       <td>
                                         <center>
                                           <a class='btn btn-warning btn-sm' data-toggle="tooltip" data-placement="top" title='Edit Data' href="#"><i class="fas fa-pen"></i></a>
-                                          <a class='btn btn-danger btn-sm hapus' data-toggle="tooltip" data-placement="top" title='Hapus Data' href="<?= base_url('tagihan/hapus/'.$t['id']) ?>" ><i class="fas fa-trash"></i></a>
+                                          <a class='btn btn-danger btn-sm hapus' data-toggle="tooltip" data-placement="top" title='Hapus Data' href="<?= base_url('tagihan/hapus/'.$t['id_tagihan']) ?>" ><i class="fas fa-trash"></i></a>
                                         </center>                                      
                                       </td>
                                     </tr>

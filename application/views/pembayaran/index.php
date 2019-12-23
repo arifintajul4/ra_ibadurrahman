@@ -35,7 +35,7 @@
                                         <td><?= $p['nama'] ?></td>
                                         <td><?= $p['jenis'] ?></td>
                                         <td>Rp.<?= number_format($p['jumlah']) ?></td>
-                                        <td><?= $p['status'] ?></td>
+                                        <td><?= $p['status_bayar'] ?></td>
                                         <td><?= $p['metode_bayar'] ?></td>
                                         <td><?= $p['tgl_bayar'] ?></td>
                                         <td>

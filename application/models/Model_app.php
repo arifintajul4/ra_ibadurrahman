@@ -89,6 +89,15 @@ class Model_app extends CI_model{
         return $this->db->get()->result_array();
     }
 
+    public function join_three_where($table1,$table2,$table3,$field,$field2,$field3,$where){
+        $this->db->select('*');
+        $this->db->from($table1);
+        $this->db->join($table2, $table1.'.'.$field.'='.$table2.'.'.$field);
+        $this->db->join($table3, $table1.'.'.$field3.'='.$table3.'.'.$field3);
+        $this->db->where($where);
+        return $this->db->get()->row();
+    }
+
     function umenu_akses($link,$id){
         return $this->db->query("SELECT * FROM modul,users_modul WHERE modul.id_modul=users_modul.id_modul AND users_modul.id_session='$id' AND modul.link='$link'")->num_rows();
     }
