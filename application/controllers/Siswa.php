@@ -65,6 +65,15 @@ class Siswa extends CI_Controller
         
     }
 
+    public function detail($nis)
+    {
+        $data['title'] = "Detail Siswa";
+        $data['siswa'] = $this->db->get_where('siswa', ['nis' => $nis])->row();
+        $data['ortu'] = $this->db->get_where('orang_tua', ['id' => $data['siswa']->id_orang_tua])->row();
+        //var_dump($data['ortu']); die;
+        $this->template->load('admin/template', 'siswa/detail', $data);
+    }
+
 	function get_datasiswa(){
         echo json_encode($this->Model_app->view_where('tabungan', ['nis' => $_POST['id']])->row());
     }

@@ -56,7 +56,7 @@
                                       <td class="text-center"><?= $row['kelas'] ?></td>
                                       <td>
                                         <center>
-                                          <a class='btn btn-warning btn-sm' data-toggle="tooltip" data-placement="top" title='Lihat Detail' href=""><i class="fas fa-search-plus"></i></a>
+                                          <a class='btn btn-warning btn-sm' data-toggle="tooltip" data-placement="top" title='Lihat Detail' href="<?= base_url('siswa/detail/'.$row['nis']) ?>"><i class="fas fa-search-plus"></i></a>
                                           <a class='btn btn-danger btn-sm hapus' data-toggle="tooltip" data-placement="top" title='Hapus Data' href="<?= base_url('siswa/hapus/'.$row['nis']) ?>" ><i class="fas fa-trash"></i></a>
                                         </center>
                                       </td>
