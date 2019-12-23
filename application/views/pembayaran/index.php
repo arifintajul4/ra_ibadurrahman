@@ -21,7 +21,7 @@
                                         <th>No</th>
                                         <th>Nama Siswa</th>
                                         <th>Jenis Tagihan</th>
-                                        <th>Nominal</th>
+                                        <th>Jumlah Bayar</th>
                                         <th>Status</th>
                                         <th>Metode Bayar</th>
                                         <th>Tanggal</th>
@@ -29,7 +29,23 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                    <?php $i=1; foreach ($pembayaran as $p): ?>
+                                    <tr>
+                                        <td><?= $i++ ?></td>
+                                        <td><?= $p['nama'] ?></td>
+                                        <td><?= $p['jenis'] ?></td>
+                                        <td>Rp.<?= number_format($p['jumlah']) ?></td>
+                                        <td><?= $p['status'] ?></td>
+                                        <td><?= $p['metode_bayar'] ?></td>
+                                        <td><?= $p['tgl_bayar'] ?></td>
+                                        <td>
+                                            <center>
+                                              <a class='btn btn-warning btn-sm' data-toggle="tooltip" data-placement="top" title='Edit Data' href="#"><i class="fas fa-pen"></i></a>
+                                              <a class='btn btn-danger btn-sm hapus' data-toggle="tooltip" data-placement="top" title='Hapus Data' href="<?= base_url('tagihan/hapus/'.$p['id']) ?>" ><i class="fas fa-trash"></i></a>
+                                            </center>  
+                                        </td>
+                                    </tr>
+                                    <?php endforeach ?>
                                 </tbody>
                             </table>
                         </div>

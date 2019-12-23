@@ -15,12 +15,20 @@ class Pembayaran extends CI_Controller
 	public function index()
 	{
 		$data['title'] = 'Pembayaran';
+		$data['pembayaran'] = $this->Model_app->join_three('pembayaran', 'siswa', 'tagihan_siswa', 'tagihan', 'nis', 'id_tagihan_siswa', 'id_tagihan', 'tgl_bayar', 'desc');
+		
 		$this->template->load('admin/template', 'pembayaran/index', $data);
 	}
 
 	public function tambah()
 	{
-		$data['title'] = 'Pembayaran';
-		$this->template->load('admin/template', 'pembayaran/tambah', $data);
+		if(isset($_GET['nis'])){
+
+		}else if(isset($_POST['submit'])){
+
+		}else{
+			$data['title'] = 'Pembayaran';
+			$this->template->load('admin/template', 'pembayaran/tambah', $data);
+		}
 	}
 }

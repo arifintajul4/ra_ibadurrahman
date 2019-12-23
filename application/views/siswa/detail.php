@@ -146,8 +146,8 @@
                                       <td><?= $t['status']; ?></td>
                                       <td>
                                         <center>
-                                          <a class='btn btn-warning btn-sm' data-toggle="tooltip" data-placement="top" title='Bayar' href="<?= base_url('pembayaran/tambah/'.$t['id']) ?>"><i class="fas fa-search-plus"></i></a>
-                                          <a class='btn btn-danger btn-sm hapus' data-toggle="tooltip" data-placement="top" title='Hapus Data' href="<?= base_url('tagihan/hapus/'.$t['id']) ?>" ><i class="fas fa-trash"></i></a>
+                                          <a class='btn btn-warning btn-sm' data-toggle="tooltip" data-placement="top" title='Bayar' href="<?= base_url('pembayaran/tambah/'.$t['id_tagihan_siswa']) ?>"><i class="fas fa-search-plus"></i></a>
+                                          <a class='btn btn-danger btn-sm hapus' data-toggle="tooltip" data-placement="top" title='Hapus Data' href="<?= base_url('tagihan/hapus/'.$t['id_tagihan_siswa']) ?>" ><i class="fas fa-trash"></i></a>
                                         </center>
                                       </td>
                                     </tr>
