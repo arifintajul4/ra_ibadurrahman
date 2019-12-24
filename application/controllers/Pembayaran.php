@@ -113,4 +113,15 @@ class Pembayaran extends CI_Controller
 			$this->template->load('admin/template', 'pembayaran/tambah', $data);
 		}
 	}
+
+	public function hapus($id)
+	{
+		if($this->db->delete('pembayaran', ['id' => $id])){
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Berhasil Tambah Data Pembayaran</div>');
+            redirect('pembayaran');
+		}else{
+			$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal Hapus Data Pembayaran!</div>');
+            redirect('pembayaran');
+		}
+	}
 }
