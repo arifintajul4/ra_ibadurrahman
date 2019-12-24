@@ -130,6 +130,7 @@
                                   <tr>
                                     <th>No</th>
                                     <th>Jenis Tagihan</th>
+                                    <th>Tahun Ajar</th>
                                     <th>Nominal</th>
                                     <th>Sisa Tagihan</th>
                                     <th>Status</th>
@@ -141,6 +142,7 @@
                                     <tr>
                                       <td><?= $i++; ?></td>
                                       <td><?= $t['jenis']; ?></td>
+                                      <td><?= $t['tahun_ajar']; ?></td>
                                       <td>Rp.<?= number_format($t['nominal']); ?></td>
                                       <td>Rp.<?= number_format($t['sisa']); ?></td>
                                       <td><?= $t['status']; ?></td>

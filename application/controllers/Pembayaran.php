@@ -34,6 +34,37 @@ class Pembayaran extends CI_Controller
 			$id_tagihan_siswa = $this->input->post('id_tagihan_siswa');
 			$jumlah_bayar = (int)$this->input->post('jumlah');
 			$tagihan = $this->db->get_where('tagihan_siswa', ['id_tagihan_siswa' => $id_tagihan_siswa])->row();
+
+			$metode_bayar = $this->input->post('metode');
+			
+			if($metode_bayar == 'Tabungan'){
+				$tabungan = $this->db->get_where('tabungan', ['nis' =>$this->input->post('nis')])->row();
+				$saldo = (int)$tabungan->saldo;
+				$sisa_saldo = $saldo - $jumlah_bayar;
+
+				$data_t = [
+					'saldo' => $sisa_saldo,
+				];
+
+				$this->db->where('nis', $this->input->post('nis'));
+				if($this->db->update('tabungan', $data_t)){
+					$trx_tabungan = [
+						'nis' => $this->input->post('nis'),
+						'jenis' => 'keluar',
+						'nominal' => $jumlah_bayar,
+						'ket' => 'Pembayaran '.$this->input->post('jenis'),
+						'tanggal' => $this->input->post('tanggal'),
+					];
+					if(!$this->db->insert('transaksi_tabungan', $trx_tabungan)){
+						$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal Tambah Data Pembayaran!</div>');
+            			redirect('pembayaran/tambah');
+					}
+
+				}else{
+					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Gagal Tambah Data Pembayaran!</div>');
+            		redirect('pembayaran/tambah');
+				}
+			}
 			$sisa = (int)$tagihan->sisa - $jumlah_bayar;
 
 			$data = [
@@ -41,7 +72,7 @@ class Pembayaran extends CI_Controller
 				'id_tagihan_siswa' => $id_tagihan_siswa,
 				'jumlah' => $this->input->post('jumlah'),
 				'status_bayar' => ($sisa == 0)? 'Lunas' : 'Belum Lunas',
-				'metode_bayar' => $this->input->post('metode'),
+				'metode_bayar' => $metode_bayar,
 				'tgl_bayar' => $this->input->post('tanggal'),
 			];
 
