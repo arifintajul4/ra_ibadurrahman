@@ -23,7 +23,6 @@
                             <div class="form-group row">
                                 <label for="nama_siswa" class="col-sm-3 col-form-label">Nama Lengkap</label>
                                 <div class="col-sm-9">
-                                  <!-- <input type="text" class="form-control" id="nama_siswa" name="nama" value="<?= ($tagihan != NULL ) ? $tagihan->nama : '' ?>"> -->
                                     <select class="form-control selectpicker" id="nama_siswa" name="nama" data-live-search="true">
                                         <option></option>
                                         <?php foreach ($siswa as $s): ?>

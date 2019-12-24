@@ -22,13 +22,18 @@
                             <div class="form-group row">
                                 <label for="nama_siswa" class="col-sm-3 col-form-label">Nama Lengkap</label>
                                 <div class="col-sm-9">
-                                  <input type="text" class="form-control" id="nama_siswa" name="nama_siswa">
+                                    <select class="form-control selectpicker" id="nama_siswa" name="nama" data-live-search="true">
+                                        <option></option>
+                                        <?php foreach ($siswa as $s): ?>
+                                        <option value="<?= $s['nis'] ?>"><?= $s['nama'] ?></option>
+                                        <?php endforeach?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="jenis" class="col-sm-3 col-form-label">Jenis</label>
+                                <label for="jenis_t" class="col-sm-3 col-form-label">Jenis</label>
                                 <div class="col-sm-9">
-                                    <select class="form-control" id="jenis" name="jenis">
+                                    <select class="form-control selectpicker" id="jenis_t" name="jenis">
                                       <option></option>
                                       <option value="masuk">Pemasukan</option>
                                       <option value="keluar">Pengeluaran</option>

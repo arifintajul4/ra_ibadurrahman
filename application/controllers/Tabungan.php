@@ -22,6 +22,7 @@ class Tabungan extends CI_Controller
 	public function tambah()
 	{
 		$data['title'] = 'Tambah Data Tabungan';
+        $data['siswa'] = $this->db->get('siswa')->result_array();
 		if (isset($_POST['submit'])){
             $data = [
                 'nis'=>$this->db->escape_str($this->input->post('nis')),
@@ -82,4 +83,35 @@ class Tabungan extends CI_Controller
 			$this->template->load('admin/template', 'tabungan/tambah', $data);
         }
 	}
+
+    public function hapus($id)
+    {
+        if($this->db->delete('transaksi_tabungan', ['nis' => $id])){
+            if($this->db->delete('tabungan', ['nis' => $id])){
+                $this->session->set_flashdata('message',
+                    '<div class="alert alert-success alert-dismissible" role="alert">Berhasil Hapus Data
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>');
+                redirect('tabungan');
+            }else{
+                $this->session->set_flashdata('message',
+                    '<div class="alert alert-danger alert-dismissible" role="alert">Gagal Hapus Data!
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>');
+                redirect('tabungan');
+            }
+        }else{
+            $this->session->set_flashdata('message',
+                '<div class="alert alert-danger alert-dismissible" role="alert">Gagal Hapus Data!
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>');
+            redirect('tabungan');
+        }
+    }
 }

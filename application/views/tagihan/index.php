@@ -71,15 +71,11 @@
           </div>
           <div class="form-group">
             <label for="jenis">Jenis</label>
-            <select class="form-control" id="jenis" name="jenis">
-              <option></option>
-              <option value="SPP">SPP</option>
-              <option value="Kegiatan_Tahunan">Kegiatan Tahunan</option>
-            </select>
+            <input type="text" class="form-control" id="jenis" name="jenis" placeholder="SPP">
           </div>
           <div class="form-group">
             <label for="nominal">Nominal</label>
-            <input type="text" class="form-control" id="nominal" name="nominal">
+            <input type="text" class="form-control" id="nominal" name="nominal" placeholder="50000">
           </div>
       </div>
       <div class="modal-footer">
