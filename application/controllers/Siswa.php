@@ -71,7 +71,8 @@ class Siswa extends CI_Controller
         $data['siswa'] = $this->db->get_where('siswa', ['nis' => $nis])->row();
         $data['ortu'] = $this->db->get_where('orang_tua', ['id' => $data['siswa']->id_orang_tua])->row();
         $data['tagihan'] = $this->Model_app->view_join_where('tagihan_siswa', 'tagihan', 'id_tagihan', ['nis' => $nis], 'id_tagihan_siswa', 'DESC');
-        //var_dump($data['ortu']); die;
+        $data['tabungan'] = $this->db->get_where('transaksi_tabungan', ['nis' => $nis])->result_array();
+        //var_dump($data['tabungan']); die;
         $this->template->load('admin/template', 'siswa/detail', $data);
     }
 

@@ -164,12 +164,27 @@
                                     <th>No</th>
                                     <th>Tanggal</th>
                                     <th>Nominal</th>
+                                    <th>Jenis</th>
                                     <th>Keterangan</th>
                                     <th class="text-center">Action</th>
                                   </tr>
                                 </thead>
                                 <tbody>
-                                  
+                                  <?php $i=1; foreach ($tabungan as $tab): ?>
+                                  <tr>
+                                    <td><?= $i++ ?></td>
+                                    <td><?= date('d M Y', strtotime($tab['tanggal'])) ?></td>
+                                    <td>Rp.<?= number_format($tab['nominal']) ?></td>
+                                    <td><?= $tab['jenis'] ?></td>
+                                    <td><?= $tab['ket'] ?></td>
+                                    <td>
+                                        <center>
+                                          <a class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title='Bayar' href="<?= base_url('pembayaran/tambah?id='.$tab['no_transaksi']) ?>"><i class="fas fa-search-plus"></i></a>
+                                          <a class='btn btn-danger btn-sm hapus' data-toggle="tooltip" data-placement="top" title='Hapus Data' href="<?= base_url('tagihan/hapus/'.$tab['no_transaksi']) ?>" ><i class="fas fa-trash"></i></a>
+                                        </center>
+                                      </td>
+                                  </tr>
+                                  <?php endforeach; ?>
                                 </tbody>
                               </table>
                             </div>
