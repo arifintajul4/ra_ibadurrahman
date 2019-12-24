@@ -83,8 +83,8 @@ class Model_app extends CI_model{
         $this->db->select('*');
         $this->db->from($table1);
         $this->db->join($table2, $table1.'.'.$field.'='.$table2.'.'.$field);
-        $this->db->join($table3, $table1.'.'.$field2.'='.$table3.'.'.$field2);
-        $this->db->join($table4, $table3.'.'.$field3.'='.$table4.'.'.$field3);
+        $this->db->join($table3, $table2.'.'.$field2.'='.$table3.'.'.$field2);
+        $this->db->join($table4, $table2.'.'.$field3.'='.$table4.'.'.$field3);
         $this->db->order_by($order,$ordering);
         return $this->db->get()->result_array();
     }

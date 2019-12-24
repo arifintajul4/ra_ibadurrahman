@@ -1,4 +1,4 @@
-<!-- [ Main Content ] start -->
+
 <section class="pcoded-main-container">
     <div class="pcoded-content">
         <!-- [ Main Content ] start -->
@@ -23,17 +23,27 @@
                             <div class="form-group row">
                                 <label for="nama_siswa" class="col-sm-3 col-form-label">Nama Lengkap</label>
                                 <div class="col-sm-9">
-                                  <input type="text" class="form-control" id="nama_siswa" name="nama" value="<?= ($tagihan != NULL ) ? $tagihan->nama : '' ?>">
+                                  <!-- <input type="text" class="form-control" id="nama_siswa" name="nama" value="<?= ($tagihan != NULL ) ? $tagihan->nama : '' ?>"> -->
+                                    <select class="form-control selectpicker" id="nama_siswa" name="nama" data-live-search="true">
+                                        <option></option>
+                                        <?php foreach ($siswa as $s): ?>
+                                        <option value="<?= $s['nis'] ?>"><?= $s['nama'] ?></option>
+                                        <?php endforeach?>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="jenis" class="col-sm-3 col-form-label">Jenis Pembayaran</label>
                                 <div class="col-sm-9">
                                     <select class="form-control" id="jenis" name="jenis">
-                                      <option></option>
-                                      <option <?= ($tagihan != NULL && $tagihan->jenis == 'SPP' ) ? 'selected' : '' ?> value="SPP">SPP</option>
-                                      <option  <?= ($tagihan != NULL && $tagihan->jenis == 'Kegitan Tahunan' ) ? 'selected' : '' ?>value="Kegitan Tahunan">Kegiatan Tahunan</option>
+                                        <option></option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="tagihan" class="col-sm-3 col-form-label">Jumlah Tagihan</label>
+                                <div class="col-sm-9">
+                                   <input type="text" class="form-control" readonly id="tagihan" name="tagihan" value="<?= ($tagihan != NULL ) ? $tagihan->nominal : '' ?>">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -71,4 +81,3 @@
 
     </div>
 </section>
-<!-- [ Main Content ] end -->

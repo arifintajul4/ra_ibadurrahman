@@ -15,14 +15,33 @@ class Pembayaran extends CI_Controller
 	public function index()
 	{
 		$data['title'] = 'Pembayaran';
-		$data['pembayaran'] = $this->Model_app->join_three('pembayaran', 'siswa', 'tagihan_siswa', 'tagihan', 'nis', 'id_tagihan_siswa', 'id_tagihan', 'id', 'desc');
-		
+		$data['pembayaran'] = $this->Model_app->join_three('pembayaran', 'tagihan_siswa', 'tagihan', 'siswa', 'id_tagihan_siswa', 'id_tagihan', 'nis', 'id', 'desc');
+		//var_dump($data['pembayaran']); die;
 		$this->template->load('admin/template', 'pembayaran/index', $data);
+	}
+
+	public function getJenisBayar()
+	{
+		$result = $this->Model_app->view_join_where('tagihan_siswa', 'tagihan', 'id_tagihan', ['nis' => $_POST['id']],'tagihan_siswa.id_tagihan', 'desc');
+		//var_dump($result); die;
+		echo json_encode($result);
+	}
+
+	public function getDetailTagihan()
+	{
+		// $this->db->select('*');
+		// $this->db->from('tagihan_siswa');
+		// $this->db->join('tagihan', 'tagihan_siswa.id_tagihan = tagihan.id_tagihan');
+		// $this->db->where('tagihan_siswa.id_tagihan_siswa', $_POST['id']);
+		$result = $this->db->get_where('tagihan_siswa', ['id_tagihan_siswa' => $_POST['id']])->row();
+		//var_dump($result); die;
+		echo json_encode($result);
 	}
 
 	public function tambah()
 	{
 		$data['title'] = 'Tambah Pembayaran';
+		$data['siswa'] = $this->db->get('siswa')->result_array();
 		if(isset($_GET['id'])){
 
 			$data['tagihan'] = $this->Model_app->join_three_where('tagihan_siswa', 'tagihan', 'siswa','id_tagihan', 'id_tagihan_siswa', 'nis', ['tagihan_siswa.id_tagihan_siswa' => $_GET['id']]);
@@ -31,7 +50,7 @@ class Pembayaran extends CI_Controller
 
 		}else if(isset($_POST['submit'])){
 
-			$id_tagihan_siswa = $this->input->post('id_tagihan_siswa');
+			$id_tagihan_siswa = $this->input->post('jenis');
 			$jumlah_bayar = (int)$this->input->post('jumlah');
 			$tagihan = $this->db->get_where('tagihan_siswa', ['id_tagihan_siswa' => $id_tagihan_siswa])->row();
 
@@ -65,10 +84,10 @@ class Pembayaran extends CI_Controller
             		redirect('pembayaran/tambah');
 				}
 			}
+
 			$sisa = (int)$tagihan->sisa - $jumlah_bayar;
 
 			$data = [
-				'nis' => $this->input->post('nis'),
 				'id_tagihan_siswa' => $id_tagihan_siswa,
 				'jumlah' => $this->input->post('jumlah'),
 				'status_bayar' => ($sisa == 0)? 'Lunas' : 'Belum Lunas',

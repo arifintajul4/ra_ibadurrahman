@@ -44,17 +44,18 @@ $(document).ready(function() {
       });
    });
 
-   $("#nama_siswa").autocomplete({
-      source: base_url+"siswa/get_namasiswa",
-      //source: data,
-      select: function (event, ui) {
-         console.log('ok');
-         event.preventDefault();
-         $("#nis").val(ui.item.value);
-         $("#nama_siswa").val(ui.item.label);
-      },
-   });
+   // $("#nama_siswa").autocomplete({
+   //    source: base_url+"siswa/get_namasiswa",
+   //    //source: data,
+   //    select: function (event, ui) {
+   //       event.preventDefault();
+   //       $("#nis").val(ui.item.value);
+   //       $("#nama_siswa").val(ui.item.label);
+   //    },
+   // });
+
    $("#saldo").hide();
+   
    $("#metode").change(function(){
       if($("#metode").val() == "Tabungan"){
           const id = $("#nis").val();
@@ -116,5 +117,44 @@ $(document).ready(function() {
     });
 
     $('div.setup-panel div a.btn-primary').trigger('click');
+
+    $("#nama_siswa").change(function(){
+          $('#tagihan').val('');
+          const id = $("#nama_siswa").val();
+          $('#nis').val(id);
+          $.ajax({
+              url: base_url+"pembayaran/getJenisBayar",
+              type:"POST",
+              dataType: 'JSON',
+              data:{
+                  id: id
+              },
+              success:function(data){
+                  //console.log(data);
+                  $jenis = $('#jenis').html('<option></option>');
+                  for (var i = 0; i < data.length; i++) {
+                      if(data[i].sisa != 0){
+                        $jenis.append('<option  value=' + data[i].id_tagihan_siswa + '>' + data[i].jenis +' - '+ data[i].tahun_ajar + '</option>');
+                      }
+                  }
+              }
+          });
+    });
+
+    $("#jenis").change(function(){
+          $('#tagihan').val('');
+          const id = $("#jenis").val();
+          $.ajax({
+              url: base_url+'pembayaran/getDetailTagihan',
+              type:"POST",
+              dataType: 'JSON',
+              data:{
+                  id: id
+              },
+              success:function(data){
+                  $('#tagihan').val(data.sisa);
+              }
+          });
+    });
 
 });

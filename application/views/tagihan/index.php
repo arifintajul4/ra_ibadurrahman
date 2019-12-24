@@ -74,7 +74,7 @@
             <select class="form-control" id="jenis" name="jenis">
               <option></option>
               <option value="SPP">SPP</option>
-              <option value="Kegitan Tahunan">Kegiatan Tahunan</option>
+              <option value="Kegiatan_Tahunan">Kegiatan Tahunan</option>
             </select>
           </div>
           <div class="form-group">
