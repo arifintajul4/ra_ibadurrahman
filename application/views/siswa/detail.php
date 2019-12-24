@@ -181,8 +181,7 @@
                                     <td><?= $tab['ket'] ?></td>
                                     <td>
                                         <center>
-                                          <a class="btn btn-warning btn-sm" data-toggle="tooltip" data-placement="top" title='Bayar' href="<?= base_url('pembayaran/tambah?id='.$tab['no_transaksi']) ?>"><i class="fas fa-search-plus"></i></a>
-                                          <a class='btn btn-danger btn-sm hapus' data-toggle="tooltip" data-placement="top" title='Hapus Data' href="<?= base_url('tagihan/hapus/'.$tab['no_transaksi']) ?>" ><i class="fas fa-trash"></i></a>
+                                          <a class='btn btn-danger btn-sm hapus' data-toggle="tooltip" data-placement="top" title='Hapus Data' href="<?= base_url('tabungan/hapus_trx/'.$tab['no_transaksi'].'/'.$siswa->nis) ?>" ><i class="fas fa-trash"></i></a>
                                         </center>
                                       </td>
                                   </tr>

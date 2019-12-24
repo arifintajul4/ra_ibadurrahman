@@ -114,4 +114,25 @@ class Tabungan extends CI_Controller
             redirect('tabungan');
         }
     }
+
+    public function hapus_trx($id, $nis)
+    {
+        if($this->db->delete('transaksi_tabungan', ['no_transaksi' => $id])){
+            $this->session->set_flashdata('message',
+                '<div class="alert alert-success alert-dismissible" role="alert">Berhasil Hapus Data
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>');
+            redirect('siswa/detail/'.$nis);
+        }else{
+            $this->session->set_flashdata('message',
+                '<div class="alert alert-danger alert-dismissible" role="alert">Gagal Hapus Data!
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>');
+            redirect('siswa/detail/'.$nis);
+        }
+    }
 }
