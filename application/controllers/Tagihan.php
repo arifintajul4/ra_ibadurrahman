@@ -53,4 +53,19 @@ class Tagihan extends CI_Controller
 			redirect('tagihan');
 		}
 	}
+
+	public function hapus($id)
+	{	
+		if($this->db->delete('tagihan_siswa', ['id_tagihan' => $id])){
+			if($this->db->delete('tagihan', ['id_tagihan' => $id])){
+				$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Berhasil Hapus Tagihan</div>');
+	            redirect('tagihan');
+			}else{
+				$this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert">Gagal Hapus Tagihan!</div>');
+	            redirect('tagihan');
+			}
+		}else{
+	        redirect('tagihan');
+		}
+	}
 }
