@@ -95,4 +95,29 @@ class Siswa extends CI_Controller
             }
         }
     }
+
+    public function hapus($nis)
+    {
+        $tagihan = $this->db->get_where('tagihan_siswa', ['nis' => $nis ])->result_array();
+        //var_dump($tagihan); die;
+        $this->db->delete('transaksi_tabungan', ['nis' => $nis]);
+        $this->db->delete('tabungan', ['nis' => $nis]);
+        foreach ($tagihan as $t) {
+            $this->db->delete('pembayaran', ['id_tagihan_siswa' => $t['id_tagihan_siswa']]);
+        }
+        $this->db->delete('tagihan_siswa', ['nis' => $nis]);
+
+        if($this->db->delete('tabungan', ['nis' => $nis])){
+            if($this->db->delete('siswa', ['nis' => $nis])){
+                $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Hapus Data Siswa Berhasil</div>');
+                redirect('siswa');
+            }else{
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Hapus Data Siswa Gagal!</div>');
+                redirect('siswa');
+            }
+        }else{
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Hapus Data Siswa Gagal!</div>');
+            redirect('siswas');
+        }
+    }
 }

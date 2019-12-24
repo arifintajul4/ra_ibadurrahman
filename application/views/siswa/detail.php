@@ -148,8 +148,7 @@
                                       <td><?= $t['status']; ?></td>
                                       <td>
                                         <center>
-                                          <a class="btn btn-warning btn-sm <?= ($t['status'] == 'Lunas') ?'disabled':'' ?>" data-toggle="tooltip" data-placement="top" title='Bayar' href="<?= base_url('pembayaran/tambah?id='.$t['id_tagihan_siswa']) ?>"><i class="fas fa-search-plus"></i></a>
-                                          <a class='btn btn-danger btn-sm hapus' data-toggle="tooltip" data-placement="top" title='Hapus Data' href="<?= base_url('tagihan/hapus/'.$t['id_tagihan_siswa']) ?>" ><i class="fas fa-trash"></i></a>
+                                          <a class="btn btn-success btn-sm <?= ($t['status'] == 'Lunas') ?'disabled':'' ?>" data-toggle="tooltip" data-placement="top" title='Bayar' href="<?= base_url('pembayaran/tambah?id='.$t['id_tagihan_siswa']) ?>"><i class="fas fa-search-dollar"></i></a>
                                         </center>
                                       </td>
                                     </tr>

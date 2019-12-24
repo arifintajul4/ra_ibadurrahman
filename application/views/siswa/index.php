@@ -37,7 +37,7 @@
                                       <th>No</th>
                                       <th>NIS</th>
                                       <th style="width: 20%">Nama Lengkap</th>
-                                      <th>Jk</th>
+                                      <th>Jenis Kelamin</th>
                                       <th>No Telepon</th>
                                       <th>Alamat</th>
                                       <th>Kelas</th>
@@ -50,7 +50,7 @@
                                       <td><?= $no ?></td>
                                       <td><?= $row['nis'] ?></td>
                                       <td><?= $row['nama'] ?></td>
-                                      <td><?= $row['jk'] ?></td>
+                                      <td><?= ($row['jk'] == 'L')?'Laki-laki' : 'Perempuan' ?></td>
                                       <td><?= $row['no_tlp'] ?></td>
                                       <td><?= $row['alamat'] ?></td>
                                       <td class="text-center"><?= $row['kelas'] ?></td>

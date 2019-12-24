@@ -53,7 +53,7 @@ class Pembayaran extends CI_Controller
 			$id_tagihan_siswa = $this->input->post('jenis');
 			$jumlah_bayar = (int)$this->input->post('jumlah');
 			$tagihan = $this->db->get_where('tagihan_siswa', ['id_tagihan_siswa' => $id_tagihan_siswa])->row();
-
+			
 			$metode_bayar = $this->input->post('metode');
 			
 			if($metode_bayar == 'Tabungan'){
@@ -66,12 +66,13 @@ class Pembayaran extends CI_Controller
 				];
 
 				$this->db->where('nis', $this->input->post('nis'));
-				if($this->db->update('tabungan', $data_t)){
+				if($this->db->update('tabungan', $data_t)){	
+					$tmp = $this->db->get_where('tagihan', ['id_tagihan' => $tagihan->id_tagihan])->row();
 					$trx_tabungan = [
 						'nis' => $this->input->post('nis'),
 						'jenis' => 'keluar',
 						'nominal' => $jumlah_bayar,
-						'ket' => 'Pembayaran '.$this->input->post('jenis'),
+						'ket' => 'Pembayaran '.$tmp->jenis,
 						'tanggal' => $this->input->post('tanggal'),
 					];
 					if(!$this->db->insert('transaksi_tabungan', $trx_tabungan)){
