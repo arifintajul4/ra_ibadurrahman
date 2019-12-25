@@ -28,7 +28,7 @@
                     <div class="card-body">
                         <div class="mb-2">
                             <a href="<?= base_url('tabungan/tambah') ?>" class="btn btn-primary mr-2"><i class="fa fa-plus-square"></i> Tambah Data</a>
-                            <button class="btn btn-success"><i class="fa fa-print"></i> Cetak Laporan Harian</button>
+                            <a href="<?= base_url('laporan/harian') ?>" target="_blank" class="btn btn-success"><i class="fa fa-print"></i> Cetak Laporan Harian</a>
                         </div>
                         <div class="body table-responsive">
                           <table id="dataTable" class="table table-bordered table-striped table-hover js-basic-example dataTable">

@@ -33,7 +33,6 @@
             </div>
             <button class="btn btn-block btn-primary mb-4" type="submit">Signin</button>
             </form>
-            <p class="mb-0 text-muted text-center">Don’t have an account? <a href="<?= base_url('auth/create_user') ?>" class="f-w-400">Signup</a></p>
           </div>
         </div>
       </div>

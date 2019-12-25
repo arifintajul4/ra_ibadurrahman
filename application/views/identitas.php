@@ -21,7 +21,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="no_telp">No Telepon</label>
-                                <input type='number' class='form-control' id="no_telp" name='no_telp' value='<?= $record['no_telp'] ?>'>
+                                <input type='text' class='form-control' id="no_telp" name='no_telp' value='<?= $record['no_telp'] ?>'>
                             </div>
                             <div class="form-group">
                                 <label for="alamat">Alamat</label>

@@ -71,7 +71,7 @@
                     <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
                     <a href="#!" class="b-brand">
                         <!-- ========   change your logo hear   ============ -->
-                        <a href="<?= base_url('home') ?>" style="color: white; font-size: 18px; font-weight: bold;" ><?= $identitas->nama_sekolah ?></a>
+                        <a href="<?= base_url('home') ?>" style="color: white; font-size: 19px; font-weight: bold;" ><?= $identitas->nama_sekolah ?></a>
                     </a>
                     <a href="#!" class="mob-toggler">
                         <i class="feather icon-more-vertical"></i>
