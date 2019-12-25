@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php $identitas = $this->db->get_where('identitas', ['id_identitas' => 1])->row();  ?>
 <head>
-    <title><?= $title ?> - RA Ibadurrahman</title>
+    <title><?= $title ?> - <?= $identitas->nama_sekolah ?></title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -71,7 +71,7 @@
                     <a class="mobile-menu" id="mobile-collapse" href="#!"><span></span></a>
                     <a href="#!" class="b-brand">
                         <!-- ========   change your logo hear   ============ -->
-                        <a href="<?= base_url('home') ?>" style="color: white; font-size: 20px; font-weight: bold;" >RA Ibadurrahman</a>
+                        <a href="<?= base_url('home') ?>" style="color: white; font-size: 18px; font-weight: bold;" ><?= $identitas->nama_sekolah ?></a>
                     </a>
                     <a href="#!" class="mob-toggler">
                         <i class="feather icon-more-vertical"></i>

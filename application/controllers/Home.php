@@ -53,6 +53,7 @@ class Home extends CI_Controller
 			redirect('home/identitas');
 		}else{
 			$data['record'] = $this->Model_app->edit('identitas', ['id_identitas' => 1])->row_array();
+			//var_dump($data['record']); die;
 			$this->template->load('admin/template','identitas',$data);
 		}
 	}

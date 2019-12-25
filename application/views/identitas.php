@@ -29,7 +29,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="logo">Logo Sekolah</label>
-                                <input type="file" class="form-control" id="logo" name="logo" required>
+                                <input type="file" class="form-control" id="logo" name="logo" value='<?= $record['favicon'] ?>'>
                             </div>
                             <div class='box-footer'>
                                 <button type='submit' name='submit' class='btn btn-info float-right'>Update</button>
