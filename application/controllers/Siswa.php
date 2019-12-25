@@ -27,10 +27,10 @@ class Siswa extends CI_Controller
                 'nama_ibu' => $this->input->post('nama_ibu'),
                 'pekerjaan_ayah' => $this->input->post('pekerjaan_ayah'),
                 'pekerjaan_ibu' => $this->input->post('pekerjaan_ibu'),
-                'alamat' => $this->input->post('alamat_ortu'),
+                'alamat_ortu' => $this->input->post('alamat_ortu'),
                 'pendidikan_ayah' => $this->input->post('pendidikan_ayah'),
                 'pendidikan_ibu' => $this->input->post('pendidikan_ibu'),
-                'no_telp' => $this->input->post('no_telp_ortu')
+                'no_telp_ortu' => $this->input->post('no_telp_ortu')
             ];
             $this->db->insert('orang_tua', $data);
             $id_orang_tua = $this->db->insert_id();
@@ -69,7 +69,7 @@ class Siswa extends CI_Controller
     {
         $data['title'] = "Detail Siswa";
         $data['siswa'] = $this->db->get_where('siswa', ['nis' => $nis])->row();
-        $data['ortu'] = $this->db->get_where('orang_tua', ['id' => $data['siswa']->id_orang_tua])->row();
+        $data['ortu'] = $this->db->get_where('orang_tua', ['id_orang_tua' => $data['siswa']->id_orang_tua])->row();
         $data['tagihan'] = $this->Model_app->view_join_where('tagihan_siswa', 'tagihan', 'id_tagihan', ['nis' => $nis], 'id_tagihan_siswa', 'DESC');
         $data['tabungan'] = $this->db->get_where('transaksi_tabungan', ['nis' => $nis])->result_array();
         //var_dump($data['tabungan']); die;
@@ -93,6 +93,54 @@ class Siswa extends CI_Controller
                 }
                 echo json_encode($arr_result); 
             }
+        }
+    }
+
+    public function edit($nis)
+    {
+
+        if(isset($_POST['submit'])){
+            $data = [
+                'nama_ayah' => $this->input->post('nama_ayah'),
+                'nama_ibu' => $this->input->post('nama_ibu'),
+                'pekerjaan_ayah' => $this->input->post('pekerjaan_ayah'),
+                'pekerjaan_ibu' => $this->input->post('pekerjaan_ibu'),
+                'alamat_ortu' => $this->input->post('alamat_ortu'),
+                'pendidikan_ayah' => $this->input->post('pendidikan_ayah'),
+                'pendidikan_ibu' => $this->input->post('pendidikan_ibu'),
+                'no_telp_ortu' => $this->input->post('no_telp_ortu')
+            ];
+            $id_orang_tua = $this->input->post('id_orang_tua');
+            $this->db->where('id_orang_tua', $id_orang_tua);
+            $this->db->update('orang_tua', $data);
+
+            if($id_orang_tua != 0){
+                $data = [
+                    'nama' => $this->input->post('nama'),
+                    'no_tlp' => $this->input->post('no_telp'),
+                    'tgl_lahir' => $this->input->post('tgl_lahir'),
+                    'agama' => $this->input->post('agama'),
+                    'jk' => $this->input->post('jk'),
+                    'kewarganegaraan' => $this->input->post('kewarganegaraan'),
+                    'alamat' => $this->input->post('alamat'),
+                    'kelas' => $this->input->post('kelas'),
+                    'tahun_ajaran' => $this->input->post('tahun_ajaran'),
+                    'id_orang_tua' => $id_orang_tua
+                ];
+                if($this->db->update('siswa', $data, ['nis' => $nis])){
+                    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Ubah Data Siswa Berhasil</div>');
+                    redirect('siswa/detail/'.$nis);
+                }else{
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Ubah Data Siswa Gagal!</div>');
+                    redirect('siswa/edit/'.$nis);
+                }
+            }
+            
+        }else{
+            $data['title'] = 'Ubah Data Siswa';
+            $siswa = $this->Model_app->view_join_where('siswa', 'orang_tua', 'id_orang_tua', ['siswa.nis' => $nis], 'nis', 'asc');
+            $data['siswa'] = $siswa[0];
+            $this->template->load('admin/template', 'siswa/edit', $data);
         }
     }
 

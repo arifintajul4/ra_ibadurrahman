@@ -72,7 +72,7 @@
                                     <td>: <?= $siswa->kelas ?></td>
                                   </tr>
                                 </table>
-                                <a href="#" class="btn btn-warning float-right">ubah</a>
+                                <a href="<?= base_url('siswa/edit/'.$siswa->nis) ?>" class="btn btn-warning float-right"><i class="fas fa-pen"></i> Ubah</a>
                               </div>
                             </div>
                           </div>
@@ -113,14 +113,14 @@
                               </tr>
                               <tr>
                                 <td>No Telepon</td>
-                                <td>: <?= $ortu->no_telp ?></td>
+                                <td>: <?= $ortu->no_telp_ortu ?></td>
                               </tr>
                               <tr>
                                 <td>Alamat</td>
-                                <td>: <?= $ortu->alamat ?></td>
+                                <td>: <?= $ortu->alamat_ortu ?></td>
                               </tr>
                             </table>
-                            <a href="#" class="btn btn-warning float-right">ubah</a>
+                            <a href="<?= base_url('siswa/edit/'.$siswa->nis) ?>" class="btn btn-warning float-right"><i class="fas fa-pen"></i> Ubah</a>
 
                           </div>
                           <div class="tab-pane fade" id="nav-tagihan" role="tabpanel" aria-labelledby="nav-tagihan-tab">
