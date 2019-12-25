@@ -36,10 +36,11 @@ class User extends CI_Controller
 			$inputpass = $this->input->post('pass_lama');
 
 			if(password_verify($inputpass, $pass_lama)){
-
-				if($this->ion_auth->change_password($this->session->userdata('identity'), $this->input->post('pass_lama'), $this->input->post('pass_baru'))){
-					$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Password Lama Salah!</div>');
-					redirect('user/ubah_pass', 'refresh');
+				$password = password_hash($this->input->post('pass_baru'), PASSWORD_DEFAULT);
+				$this->db->set('password', $password);
+	            $this->db->where('username', $this->session->userdata('username'));
+				if($this->db->update('users')){
+					redirect('auth/logout', 'refresh');
 				}else{
 					$this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Ubah Password Gagal!</div>');
 					redirect('user/ubah_pass', 'refresh');
