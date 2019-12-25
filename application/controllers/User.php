@@ -63,19 +63,17 @@ class User extends CI_Controller
 		if ($this->form_validation->run() === TRUE)
 		{
 			$data = [
-				'first_name' => $this->input->post('first_name'),
-				'last_name' => $this->input->post('last_name'),
+				'nama_lengkap' => $this->input->post('nama'),
 				'email' => $this->input->post('email'),
-				'active' => $this->input->post('status'),
-				'phone' => $this->input->post('no_telp'),
+				'no_tlp' => $this->input->post('no_telp'),
 			];
-			$this->db->where('id', $id);
+			$this->db->where('username', $id);
 			$this->db->update('users', $data);
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert"> Berhasil Ubah Data!</div>');
-			redirect('user', 'refresh');
+			redirect('user/profile', 'refresh');
 		}else{
 			$this->session->set_flashdata('message', '<div class="alert alert-warning" role="alert"> Gagal Ubah Data!</div>');
-			redirect('user', 'refresh');
+			redirect('user/profile', 'refresh');
 		}
 	}
 

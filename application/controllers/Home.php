@@ -15,7 +15,9 @@ class Home extends CI_Controller
 	public function index()
 	{
 		$data['title'] = 'Dashboard';
-		//var_dump($data['pemeliharaan']); die;
+		$data['tabungan'] = $this->db->select_sum('saldo')->get('tabungan')->row();
+		//$data['masuk'] = $this->db->get_where('pembayaran', ['jenis' => 'masuk'])-
+		//var_dump($data['tabungan']); die;
 		$this->template->load('admin/template', 'home/index', $data);
 	}
 

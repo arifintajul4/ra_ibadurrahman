@@ -35,7 +35,7 @@
                         				<td>: <?= $user->no_tlp ?></td>
                         			</tr>
                         		</table>
-                        		<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#ubahUser">ubah</a>
+                        		<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#ubahUser"><i class="fas fa-pen"></i> Ubah</a>
                         	</div>
                         </div>
                     </div>
@@ -60,22 +60,22 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="<?= base_url('user/edit') ?>" method="post">
+        <form action="<?= base_url('user/edit/'.$user->username) ?>" method="post">
           <div class="form-group">
             <label for="username">Username</label>
-            <input type="text" class="form-control" id="username" name="username" readonly>
+            <input type="text" class="form-control" id="username" name="username" value="<?= $user->username ?>" readonly>
           </div>
           <div class="form-group">
             <label for="first_name">Nama Lengkap</label>
-            <input type="text" name="nama" class="form-control" id="nama" required>
+            <input type="text" name="nama" class="form-control" id="nama" value="<?= $user->nama_lengkap ?>" required>
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" required>
+            <input type="email" class="form-control" id="email" name="email" value="<?= $user->email ?>" required>
           </div>
           <div class="form-group">
             <label for="no_telp">No Telepon</label>
-            <input type="number" class="form-control" id="no_telp" name="no_telp" required>
+            <input type="number" class="form-control" id="no_telp" name="no_telp" value="<?= $user->no_tlp ?>" required>
           </div>
       </div>
       <div class="modal-footer">
