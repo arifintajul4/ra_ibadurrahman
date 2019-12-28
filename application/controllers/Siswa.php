@@ -16,8 +16,32 @@ class Siswa extends CI_Controller
 	{
 		$data['title'] = 'Data Siswa';
 		$data['record'] = $this->db->get('siswa')->result_array();
+        $data['kelas'] = $this->Model_app->view_group('siswa', 'kelas');
+        //var_dump($data['kelas']);die;
 		$this->template->load('admin/template', 'siswa/index', $data);
 	}
+
+    public function cetak()
+    {
+        if(isset($_POST['submit'])){
+            $data['identitas'] = $this->db->get_where('identitas', ['id_identitas' => 1])->row();
+            
+
+            if($_POST['kelas'] != 'semua'){
+                $data['kls'] = $_POST['kelas'];
+                $data['siswa'] = $this->db->get_where('siswa', ['kelas' => $_POST['kelas'], 'tahun_ajaran' => $_POST['tahun_ajaran']])->result_array();
+            }else{
+                $data['kelas'] = $this->Model_app->view_group('siswa', 'kelas');
+                $data['siswa'] = $this->db->get_where('siswa', ['tahun_ajaran' => $_POST['tahun_ajaran']])->result_array();
+            }
+            $this->load->library('pdf');
+            $this->pdf->setPaper('A4', 'potrait');
+            $this->pdf->filename = "laporan-data-siswa.pdf";
+            $this->pdf->load_view('laporan/data_siswa', $data);
+        }else{
+            redirect('home');
+        }
+    }
 
     public function tambah()
     {

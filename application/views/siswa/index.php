@@ -28,7 +28,7 @@
                     <div class="card-body">
                         <div class="mb-2">
                             <a href="<?= base_url('siswa/tambah') ?>" class="btn btn-primary mr-2"><i class="fa fa-plus-square"></i> Tambah Siswa</a>
-                            <button class="btn btn-outline-success"><i class="fa fa-print"></i> Cetak</button>
+                            <button class="btn btn-outline-success" data-toggle="modal" data-target="#cetakModal"><i class="fa fa-print"></i> Cetak</button>
                         </div>
                         <div class="body table-responsive">
                           <table id="dataTable" class="table table-bordered table-striped table-hover js-basic-example dataTable">
@@ -75,3 +75,39 @@
     </div>
 </section>
 <!-- [ Main Content ] end -->
+
+<!-- Modal -->
+<div class="modal fade" id="cetakModal" tabindex="-1" role="dialog" aria-labelledby="cetakModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cetakModalLabel">Cetak Data Siswa</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="<?= base_url('siswa/cetak') ?>" method="post" target="_blank">
+          <div class="form-group">
+            <label for="tahun_ajaran">Tahun Ajaran</label>
+            <input type="text" class="form-control" id="tahun_ajaran" name="tahun_ajaran" placeholder="contoh: 2017/1">
+          </div>
+          <div class="form-group">
+            <label for="kelas">Kelas</label>
+            <select class="form-control" id="kelas" name="kelas">
+              <option value="semua">Semua Kelas</option>
+              <?php foreach ($kelas as $k): ?>
+              <option value="<?= $k['kelas'] ?>"><?= $k['kelas'] ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+        <button type="submit" name="submit" value="true" class="btn btn-primary" >Cetak</button>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

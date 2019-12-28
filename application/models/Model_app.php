@@ -11,6 +11,13 @@ class Model_app extends CI_model{
         return $this->db->get('siswa')->result();
     }
 
+    public function view_group($table, $field){
+        $this->db->select('*');
+        $this->db->from($table);
+        $this->db->group_by($field);
+        return $this->db->get()->result_array();
+    }
+
     public function insert($table,$data){
         return $this->db->insert($table, $data);
     }
